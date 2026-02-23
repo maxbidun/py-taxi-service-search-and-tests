@@ -10,7 +10,7 @@ Manufacturer_url = reverse("taxi:manufacturer-list")
 class PublicManufactureListView(TestCase):
     def test_login_required(self) -> None:
         res = self.client.get(Manufacturer_url)
-        self.assertNotEquals(res, 200)
+        self.assertNotEqual(res.status_code, 200)
 
 
 class PrivateManufactureListView(TestCase):

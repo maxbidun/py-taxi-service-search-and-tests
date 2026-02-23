@@ -6,12 +6,13 @@ from django.urls import reverse
 class AdminSiteTest(TestCase):
     def setUp(self) -> None:
         self.client = Client()
-        self.driver = get_user_model().objects.create_superuser(
+        self.admin = get_user_model().objects.create_superuser(
             username="testadmin",
-            password="test1234"
+            password="test1234",
+            license_number="ABC12345"
         )
-        self.client.force_login(self.driver)
-        self.driver = get_user_model().objects.create_superuser(
+        self.client.force_login(self.admin)
+        self.driver = get_user_model().objects.create_user(
             username="Anton",
             password="anton_narkoman",
             license_number="ANT12345"

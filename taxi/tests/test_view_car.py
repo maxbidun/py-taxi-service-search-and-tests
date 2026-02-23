@@ -9,14 +9,15 @@ Car_url = reverse("taxi:car-list")
 class PublicCarListView(TestCase):
     def test_login_required(self) -> None:
         res = self.client.get(Car_url)
-        self.assertNotEquals(res, 200)
+        self.assertNotEquals(res.status_code, 200)
 
 
 class PrivateCarListView(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             username="test",
-            password="test12234"
+            password="test12234",
+            license_number="TST00001"
         )
         self.client.force_login(self.user)
         manufacturer_car = Manufacturer.objects.create(

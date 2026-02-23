@@ -10,7 +10,7 @@ Driver_url = reverse("taxi:driver-list")
 class PublicDriverListView(TestCase):
     def test_login_required(self) -> None:
         res = self.client.get(Driver_url)
-        self.assertNotEquals(res, 200)
+        self.assertNotEquals(res.status_code, 200)
 
 
 class PrivateDriverListView(TestCase):

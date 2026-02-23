@@ -19,7 +19,7 @@ class ModelTest(TestCase):
         )
         self.assertEquals(
             str(driver),
-            f"{driver.username} ({driver.first_name} {driver.last_name}"
+            f"{driver.username} ({driver.first_name} {driver.last_name})"
         )
 
     def test_car_format_str(self) -> None:
@@ -38,9 +38,9 @@ class ModelTest(TestCase):
         self.assertEquals(str(car), car.model)
 
     def test_create_driver(self) -> None:
-        username = "test",
-        license_number = "ABC12345",
-        first_name = "Max",
+        username = "test"
+        license_number = "ABC12345"
+        first_name = "Max"
         last_name = "Lesyk"
         password = "test123"
         driver = Driver.objects.create_user(
