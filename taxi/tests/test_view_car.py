@@ -9,7 +9,7 @@ Car_url = reverse("taxi:car-list")
 class PublicCarListView(TestCase):
     def test_login_required(self) -> None:
         res = self.client.get(Car_url)
-        self.assertNotEquals(res.status_code, 200)
+        self.assertNotEqual(res.status_code, 200)
 
 
 class PrivateCarListView(TestCase):

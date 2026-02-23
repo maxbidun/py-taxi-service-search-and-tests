@@ -10,22 +10,23 @@ Driver_url = reverse("taxi:driver-list")
 class PublicDriverListView(TestCase):
     def test_login_required(self) -> None:
         res = self.client.get(Driver_url)
-        self.assertNotEquals(res.status_code, 200)
+        self.assertNotEqual(res.status_code, 200)
 
 
 class PrivateDriverListView(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             username="test",
-            password="test12234"
+            password="test12234",
+            license_number="TST00001"
         )
         self.client.force_login(self.user)
 
     def test_retrieve_driver(self) -> None:
         response = self.client.get(Driver_url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         driver_all = Driver.objects.all()
-        self.assertEquals(
+        self.assertEqual(
             list(response.context["driver_list"]),
             list(driver_all)
         )

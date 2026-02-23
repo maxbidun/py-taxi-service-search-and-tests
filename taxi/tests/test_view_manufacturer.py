@@ -17,7 +17,8 @@ class PrivateManufactureListView(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             username="test",
-            password="test12234"
+            password="test12234",
+            license_number="TST00001"
         )
         self.client.force_login(self.user)
         Manufacturer.objects.create(name="Aston Martin", country="England")
@@ -25,9 +26,9 @@ class PrivateManufactureListView(TestCase):
 
     def test_retrieve_manufacturer(self) -> None:
         response = self.client.get(Manufacturer_url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         manufacturerall = Manufacturer.objects.all()
-        self.assertEquals(
+        self.assertEqual(
             list(response.context["manufacturer_list"]),
             list(manufacturerall)
         )
